@@ -7,7 +7,15 @@ Use timestamps for boolean columns.
 Example
 =======
 
+class User < ActiveRecord::Base
+  include TimestampedBoolean
+
+  timestamped_boolean :active
+end
+
+u = User.new
+u.active = true
+u.active_changed_at #=> Tue May 19 15:53:29 -0400 2009
 
 
-
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 Scott Taylor, released under the MIT license
