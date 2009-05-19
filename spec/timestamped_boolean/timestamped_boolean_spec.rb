@@ -15,6 +15,10 @@ describe TimestampedBoolean do
 
       attr_accessor :foo_changed_at
       attr_accessor :bar_changed_at
+
+      def write_attribute(field, val)
+        instance_variable_set("@#{field}", val)
+      end
     end
 
     klass.instance_eval(&block)
@@ -54,5 +58,18 @@ describe TimestampedBoolean do
     end
 
     obj.bar = true
+  end
+
+  class User < ActiveRecord::Base
+    include TimestampedBoolean
+    
+    timestamped_boolean :foo
+  end
+
+  it "should set the variable with a real AR instance" do
+    @user = User.new
+
+    @user.foo = true
+    @user.foo.should be_true
   end
 end
