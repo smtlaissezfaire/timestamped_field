@@ -11,6 +11,10 @@ ActiveRecord::Schema.define do
   create_table :users, :force => true do |t|
     t.boolean  :foo
     t.datetime :foo_changed_at
+    
+    t.string :name
+    t.datetime :name_changed_at
+    
     t.timestamps
   end
 end

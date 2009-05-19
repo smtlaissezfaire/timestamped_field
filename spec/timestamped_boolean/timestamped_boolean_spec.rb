@@ -64,6 +64,7 @@ describe TimestampedBoolean do
     include TimestampedBoolean
     
     timestamped_boolean :foo
+    timestamped_boolean :name
   end
 
   it "should set the variable with a real AR instance" do
@@ -71,5 +72,11 @@ describe TimestampedBoolean do
 
     @user.foo = true
     @user.foo.should be_true
+  end
+  
+  it "should be able to timestamp a non-boolean column" do
+    @user = User.new
+    @user.name = "Foo"
+    @user.name_changed_at.should == @now
   end
 end
