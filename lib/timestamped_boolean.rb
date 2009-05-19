@@ -3,6 +3,14 @@ module TimestampedBoolean
     mod.extend ClassMethods
   end
 
+  module Version
+    MAJOR = 0
+    MINOR = 0
+    TINY  = 1
+    
+    STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
+  end
+
   module ClassMethods
     def timestamped_boolean(field)
       define_method "#{field}=" do |val|
