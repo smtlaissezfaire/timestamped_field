@@ -1,4 +1,4 @@
-module TimestampedBoolean
+module TimestampedField
   def self.included(mod)
     mod.extend ClassMethods
   end
@@ -12,7 +12,7 @@ module TimestampedBoolean
   end
 
   module ClassMethods
-    def timestamped_boolean(field)
+    def timestamped_field(field)
       define_method "#{field}=" do |val|
         write_attribute(field, val)
         self.send("#{field}_changed_at=", Time.now)

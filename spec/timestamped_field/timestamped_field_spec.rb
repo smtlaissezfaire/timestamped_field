@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-describe TimestampedBoolean do
+describe TimestampedField do
   before do
     @now = Time.now
     Time.stub!(:now).and_return @now
@@ -8,7 +8,7 @@ describe TimestampedBoolean do
 
   def new_object(&block)
     klass = Class.new do
-      include TimestampedBoolean
+      include TimestampedField
 
       attr_accessor :foo
       attr_accessor :bar
@@ -27,7 +27,7 @@ describe TimestampedBoolean do
 
   it "should set the 'changed_at' column to the current timestamp" do
     obj = new_object do
-      timestamped_boolean :foo
+      timestamped_field :foo
     end
 
     obj.foo = true
@@ -36,7 +36,7 @@ describe TimestampedBoolean do
 
   it "should set the value of the column" do
     obj = new_object do
-      timestamped_boolean :foo
+      timestamped_field :foo
     end
 
     obj.foo = true
@@ -45,7 +45,7 @@ describe TimestampedBoolean do
 
   it "should set the value of the correct column" do
     obj = new_object do
-      timestamped_boolean :bar
+      timestamped_field :bar
     end
 
     obj.bar = true
@@ -54,17 +54,17 @@ describe TimestampedBoolean do
 
   it "should set the variable by calling the '=' method" do
     obj = new_object do
-      timestamped_boolean :foo
+      timestamped_field :foo
     end
 
     obj.bar = true
   end
 
   class User < ActiveRecord::Base
-    include TimestampedBoolean
+    include TimestampedField
     
-    timestamped_boolean :foo
-    timestamped_boolean :name
+    timestamped_field :foo
+    timestamped_field :name
   end
 
   it "should set the variable with a real AR instance" do

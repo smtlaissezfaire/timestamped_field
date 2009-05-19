@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../lib/timestamped_boolean"
+require File.dirname(__FILE__) + "/../lib/timestamped_field"
 
 require 'rubygems'
 require 'sqlite3'

@@ -1,4 +1,4 @@
-TimestampedBoolean
+TimestampedField
 ==================
 
 Use timestamps for boolean columns.
@@ -8,9 +8,9 @@ Example
 =======
 
 class User < ActiveRecord::Base
-  include TimestampedBoolean
+  include TimestampedField
 
-  timestamped_boolean :active
+  timestamped_field :active
 end
 
 u = User.new
